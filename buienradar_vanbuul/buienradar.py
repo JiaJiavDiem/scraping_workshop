@@ -23,10 +23,6 @@ Note:
 # import relevant modules
 import time
 from selenium import webdriver
-from selenium.webdriver.common.action_chains import ActionChains
-import scrapy
-import pandas as pd
-import datetime as dt
 
 # set parameters
 i_nr_minutes_between_measurement = 2

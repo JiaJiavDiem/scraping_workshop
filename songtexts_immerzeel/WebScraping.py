@@ -52,6 +52,17 @@ def collect(limit=10):
                         df_Top2000.set_value(index,'Songtekst', songText)
                         df_Top2000.set_value(index,'AantalWoorden', len(songText.split()))
     
+try:
+    os.mkdir('songteksten')
+except:
+    print('directory exists')
+    
+# run:
+download_top()
+read_data()
+describe_data()
+collect()
+
 
 #collect(100)
 

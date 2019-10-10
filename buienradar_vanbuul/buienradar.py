@@ -70,4 +70,6 @@ def run():
 
 #browser.quit()
 
+init()
+run()
 

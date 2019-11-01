@@ -78,9 +78,15 @@ def clean_filename(filename, whitelist=valid_filename_chars, replace=' '):
         print("Warning, filename truncated because it was over {}. Filenames may no longer be unique".format(char_limit))
     return cleaned_filename[:char_limit]    
 
-def get_doi(baseurl='https://www.altmetric.com/explorer/timeline?identifier=10.1002%2Fjcpy.1137&scope=all'):
+def get_doi(doi, type):
     global browser
     global download_dir
+    
+    if (type=='timeline'):
+        baseurl='https://www.altmetric.com/explorer/timeline?identifier='+doi+'&scope=all'
+    if (type=='mentions'):
+        baseurl='https://www.altmetric.com/explorer/mentions?identifier='+doi+'&scope=all'
+        
     browser.get(baseurl)
     time.sleep(1)
     
@@ -105,26 +111,35 @@ def get_doi(baseurl='https://www.altmetric.com/explorer/timeline?identifier=10.1
     if m:
         found = m.group(1)
         
-    shutil.move(filelist[0], 'in/'+clean_filename(found+'.csv'))
+    shutil.move(filelist[0], 'in/'+clean_filename(type+"_"+found+'.csv'))
     
     time.sleep(1)
 
     
 def load_dois():
     f=open('DOIs.txt').readlines()
-    urls=[]
+    dois=[]
     for i in f: 
-        urls.append('https://www.altmetric.com/explorer/timeline?identifier='+i.replace('\n','')+'&scope=all')
-    return(urls)
+        dois.append(i.replace('\n',''))
+    return(dois)
 
-urls=load_dois()
+dois=load_dois()
 
  
 init()
 
-for url in urls:
-	try:
-		get_doi(url)
-	except:
-		print('error')
-		time.sleep(5)
+def timeline():
+    for doi in dois:
+        try:
+            get_doi(doi, type='timeline')
+        except:
+            print('error')
+            time.sleep(5)
+def mentions():
+    for doi in dois:
+        try:
+            get_doi(doi, type='mentions')
+        except:
+            print('error')
+            time.sleep(5)
+mentions()

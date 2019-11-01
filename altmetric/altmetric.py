@@ -123,6 +123,8 @@ urls=load_dois()
 init()
 
 for url in urls:
-    get_doi(url)
-
-
+	try:
+		get_doi(url)
+	except:
+		print('error')
+		time.sleep(5)

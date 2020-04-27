@@ -1,20 +1,17 @@
-===================================================================
-SCRAPING WORKSHOP
-===================================================================
+# Scraping workshop
 
-DESCRIPTION:
-------------
+## Description:
+
 This repository hosts the source code of web scrapers 
 written by my students during workshops or classes, 
 or web scrapers written by myself when conducting
 research.
 
-AUTHORS:
---------
+## Author:
+
 Hannes Datta, h.datta@tilburguniversity.edu (maintainer)
 
-BUILD INSTRUCTIONS:
-------------------
+## Setup instructions:
 
 Please follow the setup guide on http://tilburgsciencehub.com,
 in particular on 
